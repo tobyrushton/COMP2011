@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+.header {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 1rem;
+}
+
+.header-list {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    font-size: 20px;
+}
+
+.header-list a {
+    text-decoration: none;
+    color: #888;
+}
+
+.header-link-active {
+    color: black !important;
+}
+
+.content {
+    padding: 2rem;
+}

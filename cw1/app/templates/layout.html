@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title> No title specified</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="header">
+            <ul class="header-list">
+                <li><a href="/" class="{% block nav_index %}{% endblock %}">All Assessments</a></li>
+                <li><a href="/new" class="{% block nav_new %}{% endblock %}">New Assessment</a></li>
+                <li><a href="/current" class="{% block nav_current %}{% endblock %}">Current Assessments</a></li>
+                <li><a href="/complete" class="{% block nav_complete %}{% endblock %}">Complete Assessments</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
