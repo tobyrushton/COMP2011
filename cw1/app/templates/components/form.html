@@ -4,17 +4,38 @@
         <label for="module_code">Module Code</label>
         {{ form.module_code }}
     </div>
+    {% for error in form.module_code.errors %}
+        [{{ error }}]
+    {% endfor %}
     <div class="input-group">
         <label for="title">Assessment Title</label>
         {{ form.title }}
     </div>
+    {% for error in form.title.errors %}
+        [{{ error }}]
+    {% endfor %}
     <div class="input-group">
         <label for="description">Description</label>
         {{ form.description }}
     </div>
+    {% for error in form.description.errors %}
+        [{{ error }}]
+    {% endfor %}
     <div class="input-group">
         <label for="due_date">Due Date/Time</label>
         {{ form.due_date }}
     </div>
+    {% for error in form.due_date.errors %}
+        [{{ error }}]
+    {% endfor %}
     <button type="submit" class="btn">Submit</button>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="error-text">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </form>
