@@ -15,9 +15,7 @@ def index():
 def new():
     form = AssessmentForm()
     # if form is submitted and valid we need to create the new assessment in the db
-    print(form.due_date.data, form.module_code.data, form.title.data, form.description.data)
     if form.validate_on_submit():
-        print("new assessment form validated")
         # create the new assessment
         new = models.Assessment(title=form.title.data,
                                  description=form.description.data,
@@ -29,7 +27,6 @@ def new():
         db.session.add(new)
         db.session.commit()
 
-        print("new assessment created")
         # redirect to the current assessments page
         return redirect(url_for('current'))
     else: # form is not valid
@@ -91,3 +88,25 @@ def completed():
                            assessments=completed, 
                            title="Completed Assessments", 
                            current=False)
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    # fetch the assessment from the db
+    assessment = db.session.query(models.Assessment).filter_by(id=id).first()
+    # create the form
+    form = AssessmentForm(obj=assessment)
+
+    if form.validate_on_submit():
+        # update the assessment with the new data
+        assessment.title = form.title.data
+        assessment.description = form.description.data
+        assessment.due_date = form.due_date.data
+        assessment.module_code = form.module_code.data
+        # update the db
+        db.session.commit()
+        # redirect to the current assessments page
+        return redirect(url_for('index'))
+    else:
+        print(form.errors)
+
+    return render_template('edit.html', title="Edit Assessment", form=form)
