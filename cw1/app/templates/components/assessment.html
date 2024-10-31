@@ -1,0 +1,21 @@
+<div class="assessment">
+    <h3>{{ assessment.module_code }}</h3>
+    <h4>{{ assessment.title }}</h4>
+    <p class="assessment-description">{{ assessment.description }}</p>
+    <p class="assessment-date">Due: {{ assessment.due_date }}</p>
+    <span class="assessment-link-container">
+        <a href="/edit/{{ assessment.id }}" class="assessment-link assessment-link-edit">Edit</a>
+        <form method="POST" action="/delete/{{ assessment.id }}">
+            <button class="assessment-link assessment-link-delete">Delete</button>
+        </form>
+        {% if assessment.completed %}
+            <form action="/uncomplete/{{ assessment.id }}" method="POST">
+                <button class="assessment-link assessment-link-complete">Uncomplete</button>
+            </form>
+        {% else %}
+            <form action="/complete/{{ assessment.id }}" method="POST">
+                <button class="assessment-link assessment-link-complete">Complete</button>
+            </form>
+        {% endif %}
+    </span>
+</div>
