@@ -27,3 +27,48 @@ body {
 .content {
     padding: 2rem;
 }
+
+.input-group {
+    display: flex;
+    border: solid black 1px;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.input-group label {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: 5px 0 0 5px;
+    border-right: solid black 1px;
+    font-weight: bold;
+    text-wrap: nowrap;
+}
+
+.input-group input, textarea {
+    border: none;
+    border-radius: 0 5px 5px 0;
+    font-size: 18px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
