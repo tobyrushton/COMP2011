@@ -3,19 +3,11 @@
 {% block content %}
     <h1>All assessments</h1>
     <h2>In progress:</h2>
-    <div class="assessment-container">
-        {% for assessment in current %}
-            {% with assessment=assessment %}
-                {% include 'components/assessment.html' %}
-            {% endwith %}
-        {% endfor %}
-    </div>
+    {% with assessments=current %}
+        {% include 'components/assessment_list.html' %}
+    {% endwith %}
     <h2>Completed:</h2>
-    <div class="assessment-container">
-        {% for assessment in completed %}
-            {% with assessment=assessment %}
-                {% include 'components/assessment.html' %}
-            {% endwith %}
-        {% endfor %}
-    </div>
+    {% with assessments=completed %}
+        {% include 'components/assessment_list.html' %}
+    {% endwith %}
 {% endblock %}

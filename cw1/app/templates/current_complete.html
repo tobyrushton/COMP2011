@@ -17,11 +17,7 @@
         Your Completed Assessments
     {% endif %}
 </h1>
-<div class="assessment-container">
-    {% for assessment in assessments %}
-        {% with assessment=assessment %}
-            {% include 'components/assessment.html' %}
-        {% endwith %}
-    {% endfor %}
-</div>
+{% with assessments=assessments %}
+    {% include 'components/assessment_list.html' %}
+{% endwith %}
 {% endblock %}
