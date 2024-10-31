@@ -1,5 +1,5 @@
 from app import app, db, models
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from .forms import AssessmentForm
 
 @app.route('/')
@@ -29,7 +29,7 @@ def new():
 
         # redirect to the current assessments page
         return redirect(url_for('current'))
-    else: # form is not valid
+    elif request.method == 'POST': # form is not valid
         flash('Error updating the assessment.')
     
 
@@ -106,7 +106,7 @@ def edit(id):
         db.session.commit()
         # redirect to the current assessments page
         return redirect(url_for('index'))
-    else:
+    elif request.method == 'POST':
         flash('Error updating the assessment.')
 
     return render_template('edit.html', title="Edit Assessment", form=form)

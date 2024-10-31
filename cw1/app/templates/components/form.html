@@ -5,28 +5,28 @@
         {{ form.module_code }}
     </div>
     {% for error in form.module_code.errors %}
-        [{{ error }}]
+        <p class="error-text">{{ error }}</p>
     {% endfor %}
     <div class="input-group">
         <label for="title">Assessment Title</label>
         {{ form.title }}
     </div>
     {% for error in form.title.errors %}
-        [{{ error }}]
+        <p class="error-text">{{ error }}</p>
     {% endfor %}
     <div class="input-group">
         <label for="description">Description</label>
         {{ form.description }}
     </div>
     {% for error in form.description.errors %}
-        [{{ error }}]
+        <p class="error-text">{{ error }}</p>
     {% endfor %}
     <div class="input-group">
         <label for="due_date">Due Date/Time</label>
         {{ form.due_date }}
     </div>
     {% for error in form.due_date.errors %}
-        [{{ error }}]
+        <p class="error-text">{{ error }}</p>
     {% endfor %}
     <button type="submit" class="btn">Submit</button>
     {% with messages = get_flashed_messages() %}

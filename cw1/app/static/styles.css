@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-    background-color: #f1f1f1;
+    background-color: #f7f7f7;
     text-align: center;
     padding: 1rem;
 }
@@ -45,7 +45,7 @@ body {
 }
 
 .input-group label {
-    background-color: #f1f1f1;
+    background-color: #f7f7f7;
     padding: 1rem;
     border-radius: 5px 0 0 5px;
     border-right: solid black 1px;
@@ -77,7 +77,7 @@ body {
 .assessment-container {
     display: flex;
     flex-direction: column;
-    background-color: #f1f1f1;
+    background-color: #f7f7f7;
     padding: 1rem;
     gap: 1rem;
 }
