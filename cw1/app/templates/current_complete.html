@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block nav_complete %}
+    {% if not current %}
+        header-link-active
+    {% endif %}
+{% endblock %}
+{% block nav_current %}
+    {% if current %}
+        header-link-active
+    {% endif %}
+{% endblock %}
+{% block content %}
+<h1>
+    {% if current %}
+        Your Current Assessments
+    {% else %}
+        Your Completed Assessments
+    {% endif %}
+</h1>
+<div class="assessment-container">
+    {% for assessment in assessments %}
+        {% with assessment=assessment %}
+            {% include 'components/assessment.html' %}
+        {% endwith %}
+    {% endfor %}
+</div>
+{% endblock %}

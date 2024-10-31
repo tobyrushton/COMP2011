@@ -9,7 +9,7 @@ def index():
     # fetch all current assessments from db
     current = db.session.query(models.Assessment).filter_by(completed=False).all()
 
-    return render_template('index.html', completed=completed, current=current)
+    return render_template('index.html', completed=completed, current=current, title="Home")
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():
@@ -71,3 +71,23 @@ def delete(id):
     db.session.commit()
 
     return redirect(url_for('index'))
+
+@app.route('/current')
+def current():
+    # fetch all current assessments from db
+    current = db.session.query(models.Assessment).filter_by(completed=False).all()
+
+    return render_template('current_complete.html', 
+                           assessments=current, 
+                           title="Current Assessments", 
+                           current=True)
+
+@app.route('/complete')
+def completed():
+    # fetch all completed assessments from db
+    completed = db.session.query(models.Assessment).filter_by(completed=True).all()
+
+    return render_template('current_complete.html', 
+                           assessments=completed, 
+                           title="Completed Assessments", 
+                           current=False)
