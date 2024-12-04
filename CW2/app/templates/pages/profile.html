@@ -1,0 +1,27 @@
+{% extends "layouts/authorised_layout.html" %}
+
+{% block authorised_head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+{% endblock %}
+
+{% block authorised_content %}
+    <div class="profile-header">
+        <h2>
+            @{{ user.username }}
+        </h2>
+        <span class="profile-button-slider">
+            <a href="/profile/{{ user.username }}" class="profile-button {{ 'profile-button-active' if not likes }}">
+                Posts
+            </a>
+            <a href="/profile/{{ user.username }}/likes" class="profile-button {{ 'profile-button-active' if likes }}">
+                Likes
+            </a>
+        </span>
+    </div>
+    {% for post in posts %}
+        {% with post=post %}
+            {% include 'components/post.html' %}
+        {% endwith %}
+    {% endfor %}
+{% endblock %}

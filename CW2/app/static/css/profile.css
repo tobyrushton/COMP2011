@@ -1,0 +1,26 @@
+.profile-header {
+    padding: 1rem;
+    padding-bottom: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.profile-button-slider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.profile-button-active {
+    border-bottom: 1px solid black;
+}

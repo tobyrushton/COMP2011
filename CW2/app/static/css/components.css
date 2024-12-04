@@ -18,3 +18,26 @@
     color: white;
     border: none;
 }
+
+.post-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 1px solid #ccc;
+}
+
+.post-heading {
+    margin: 0;
+    font-size: medium;
+}
+
+.post-heading > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-footing {
+    display: flex;
+    align-items: center;
+}

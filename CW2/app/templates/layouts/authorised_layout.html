@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="feed-wrapper">
-        {% block authorised_content %}{% endblock %}
+    <div class="authorised-wrapper">
+        <div class="feed-wrapper">
+            {% block authorised_content %}{% endblock %}
+        </div>
     </div>
 {% endblock %}
