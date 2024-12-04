@@ -19,4 +19,9 @@
             {% include 'components/button.html' %}
         {% endwith %}
     </div>
+    {% for post in posts %}
+        {% with post=post %}
+            {% include 'components/post.html' %}
+        {% endwith %}
+    {% endfor %}
 {% endblock %}

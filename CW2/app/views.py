@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import SignUpForm, LogInForm
 import json
+from sqlalchemy import func
 
 @app.route("/")
 def index():
@@ -54,7 +55,9 @@ def logout():
 @app.route("/feed")
 @login_required
 def feed():
-    return render_template('pages/feed.html', title="Feed", user_authenticated=current_user.is_authenticated)
+    # get random list of posts
+    posts = db.session.query(models.Post).order_by(func.random()).limit(10).all()
+    return render_template('pages/feed.html', title="Feed", user_authenticated=current_user.is_authenticated, posts=posts)
 
 @app.route("/post", methods=['POST'])
 @login_required
