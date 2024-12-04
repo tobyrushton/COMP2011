@@ -12,15 +12,14 @@
 {% block authorised_content %}
     <div class="post-box">
         <script type="text/javascript" src="{{ url_for('static', filename='js/post.js') }}"></script>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
         <h3 class="post-title">Create a Chirp</h3>
         <textarea id="post-content" class="post-textarea" placeholder="What's going on?" maxlength="256"></textarea>
         {% with button_class="btn-filled post-btn", text="Post", id="post-btn" %}
             {% include 'components/button.html' %}
         {% endwith %}
     </div>
-    {% for post in posts %}
-        {% with post=post %}
+    {% for post, liked in posts %}
+        {% with post=post, liked=liked %}
             {% include 'components/post.html' %}
         {% endwith %}
     {% endfor %}

@@ -23,8 +23,8 @@
             </a>
         </span>
     </div>
-    {% for post in posts %}
-        {% with post=post %}
+    {% for post, liked in posts %}
+        {% with post=post, liked=liked %}
             {% include 'components/post.html' %}
         {% endwith %}
     {% endfor %}

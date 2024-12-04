@@ -22,22 +22,48 @@
 .post-container {
     padding: 1rem;
     display: flex;
+    gap: .5rem;
     flex-direction: column;
 
     border-bottom: 1px solid #ccc;
 }
 
 .post-heading {
-    margin: 0;
-    font-size: medium;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
 }
 
-.post-heading > a {
+.post-heading > p {
+    color: #666;
+    font-size: small;
+    margin: 0; 
+}
+
+.post-heading > h3 {
+    font-size: medium;
+    margin: 0;
+}
+
+
+.post-heading > h3 > a {
     text-decoration: none;
     color: inherit;
 }
 
 .post-footing {
     display: flex;
-    align-items: center;
+    gap: 1rem;
+}
+
+.post-footing > a, button {
+    color: #666;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.liked {
+    fill: red;
+    color: red;
 }

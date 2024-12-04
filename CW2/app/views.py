@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from .forms import SignUpForm, LogInForm
 import json
 from sqlalchemy import func
+from .posts import get_posts
 
 @app.route("/")
 def index():
@@ -56,7 +57,7 @@ def logout():
 @login_required
 def feed():
     # get random list of posts
-    posts = db.session.query(models.Post).order_by(func.random()).limit(10).all()
+    posts = get_posts(current_user).order_by(func.random()).limit(10).all()
     return render_template('pages/feed.html', title="Feed", user_authenticated=current_user.is_authenticated, posts=posts)
 
 @app.route("/post", methods=['POST'])
@@ -85,7 +86,31 @@ def profile(username=None, likes=None):
         posts = []
 
         if not likes:
-            posts = db.session.query(models.Post).order_by(models.Post.posted_at.desc()).filter_by(user=user).all()
+            posts = get_posts(current_user).order_by(models.Post.posted_at.desc()).filter(models.Post.user_id == user.id).all()
+        else:
+            posts = get_posts(current_user).filter_by(user_id=user.id).all()
         return render_template('pages/profile.html', title="Profile", user_authenticated=current_user.is_authenticated, user=user, likes=likes, posts=posts)
     else:
         return redirect(url_for('feed'))
+
+@app.route("/like", methods=['POST'])
+@login_required
+def like():
+    data = json.loads(request.data)
+    post_id = data.get('id')
+    post = db.session.query(models.Post).get(post_id)
+
+    if post:
+        like = db.session.query(models.Like).filter_by(post=post, user=current_user).first()
+        operation = "delete" if like else "add"
+
+        if like:
+            db.session.delete(like)
+        else:
+            new_like = models.Like(post=post, user=current_user)
+            db.session.add(new_like)
+        
+        db.session.commit()
+        return jsonify({'status': 'success', 'operation': operation})
+    else:
+        return jsonify({'status': 'error', 'message': 'Post does not exist.'})

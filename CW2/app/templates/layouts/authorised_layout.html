@@ -3,13 +3,16 @@
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/authorised_layout.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/setup_ajax.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/like.js') }}"></script>
     {% block authorised_head %}{% endblock %}
 {% endblock %}
 
 {% block content %}
     <div class="authorised-wrapper">
         <div class="sidebar">
-            <a class="siderbar-item {% block sidebar_feed %}{% endblock %}" href="feed">
+            <a class="siderbar-item {% block sidebar_feed %}{% endblock %}" href="/feed">
                 Feed
             </a>
             <a class="siderbar-item {% block sidebar_profile %}{% endblock %}" href="/profile">
