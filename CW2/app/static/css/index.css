@@ -1,0 +1,17 @@
+h2, p {
+    text-align: center;
+}
+
+h2 {
+    font-size: xx-large;
+}
+
+p {
+    font-size: large;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}

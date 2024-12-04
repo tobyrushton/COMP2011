@@ -1,0 +1,36 @@
+{% include "layouts/root_layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="auth-container">
+        <h2>
+            {% if auth_type == "register" %}
+                Register
+            {% else %}
+                Log in
+            {% endif %} 
+        </h2>
+        <form action="/auth/{{ auth_type }}" class="auth-form" method="POST">
+            {{ form.hidden_tag() }}
+            <label for="username">Username</label>
+            {{ form.username() }}
+            <label for="password">Password</label>
+            {{ form.password() }}
+            {% if auth_type == "register" %}
+                <label for="confirm_password">Confirm Password</label>
+                {{ form.confirm_password() }}
+            {% endif %}
+            <button type="submit" class="btn-filled">
+                {% if auth_type == "register" %}
+                    Register
+                {% else %}
+                    Log in
+                {% endif %}
+            </button>
+        </form>
+    </div>
+{% endblock %}

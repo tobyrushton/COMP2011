@@ -1,0 +1,5 @@
+{% if link %}
+    <a href="{{ link }}" class="btn btn-link {{ button_class }}">{{ text }}</a>
+{% else %}
+    <button class="btn {{ button_class }}">{{ text }}</button>
+{% endif %}

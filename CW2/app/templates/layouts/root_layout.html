@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>Chirp - Short. Sweet. Social.</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/root_layout.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Chirp - the snappy social media">
+
+        <!-- Add additional head elements from child templates -->
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">
+                <a href="/">Chirp</a>
+            </h1>
+            {% if user_authenticated %}
+                <a href="/logout">log out</a>
+            {% endif %}
+        </div>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>

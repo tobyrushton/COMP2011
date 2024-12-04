@@ -1,0 +1,20 @@
+{% extends "layouts/root_layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Chirp!</h2>
+    <p>
+        Connect with friends and share your thoughts in short, snappy messages.
+    </p>
+    <span class="btn-container">
+        {% with text="Sign up", link="/auth/register", button_class="btn-filled" %}
+            {% include "components/button.html" %}
+        {% endwith %}
+        {% with text="Log in", link="/auth/login" %}
+            {% include "components/button.html" %}
+        {% endwith %}
+    </span>
+{% endblock %}
