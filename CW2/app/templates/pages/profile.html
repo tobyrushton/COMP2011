@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
 {% endblock %}
 
+{% block sidebar_profile %}
+    sidebar-item-active
+{% endblock %}
+
 {% block authorised_content %}
     <div class="profile-header">
         <h2>

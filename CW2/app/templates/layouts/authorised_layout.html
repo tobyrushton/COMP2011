@@ -8,6 +8,14 @@
 
 {% block content %}
     <div class="authorised-wrapper">
+        <div class="sidebar">
+            <a class="siderbar-item {% block sidebar_feed %}{% endblock %}" href="feed">
+                Feed
+            </a>
+            <a class="siderbar-item {% block sidebar_profile %}{% endblock %}" href="/profile">
+                Profile
+            </a>
+        </div>
         <div class="feed-wrapper">
             {% block authorised_content %}{% endblock %}
         </div>

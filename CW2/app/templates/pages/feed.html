@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
 {% endblock %}
 
+{% block sidebar_feed %}
+    sidebar-item-active
+{% endblock %}
+
 {% block authorised_content %}
     <div class="post-box">
         <script type="text/javascript" src="{{ url_for('static', filename='js/post.js') }}"></script>

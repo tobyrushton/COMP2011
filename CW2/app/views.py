@@ -71,18 +71,18 @@ def post():
 
     return jsonify({'status': 'success'})
 
+@app.route("/profile")
 @app.route("/profile/<string:username>")
 @app.route("/profile/<string:username>/<string:likes>")
 @login_required
-def profile(username, likes=None):
-    user = db.session.query(models.User).filter_by(username=username).first()
+def profile(username=None, likes=None):
+    user = current_user if not username else db.session.query(models.User).filter_by(username=username).first()
     
     if user:
         posts = []
 
         if not likes:
             posts = db.session.query(models.Post).order_by(models.Post.posted_at.desc()).filter_by(user=user).all()
-            print(posts)
         return render_template('pages/profile.html', title="Profile", user_authenticated=current_user.is_authenticated, user=user, likes=likes, posts=posts)
     else:
         return redirect(url_for('feed'))
