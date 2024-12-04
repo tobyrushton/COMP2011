@@ -1,0 +1,36 @@
+.feed-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 30rem;
+
+    border-style: none solid;
+    border-width: 1px;
+    border-color: #ccc;
+}
+
+.post-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-bottom: solid 1px #ccc;
+    padding: .5rem 1rem;
+}
+
+.post-title {
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.post-textarea {
+    resize: none;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    outline: none;
+    height: 5rem;
+}
+
+.post-btn {
+    align-self: flex-end;
+}

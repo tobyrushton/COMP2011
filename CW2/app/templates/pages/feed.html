@@ -1,0 +1,22 @@
+{% extends "layouts/authorised_layout.html" %}
+
+{% block authorised_head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="authorised-wrapper">
+        <div class="feed-wrapper">
+            <div class="post-box">
+                <script type="text/javascript" src="{{ url_for('static', filename='js/post.js') }}"></script>
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <h3 class="post-title">Create a Chirp</h3>
+                <textarea id="post-content" class="post-textarea" placeholder="What's going on?" maxlength="256"></textarea>
+                {% with button_class="btn-filled post-btn", text="Post", id="post-btn" %}
+                    {% include 'components/button.html' %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

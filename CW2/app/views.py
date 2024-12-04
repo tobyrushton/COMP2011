@@ -1,7 +1,8 @@
 from app import app, login_manager, models, db
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import SignUpForm, LogInForm
+import json
 
 @app.route("/")
 def index():
@@ -13,6 +14,9 @@ def load_user(user_id):
 
 @app.route("/auth/<string:auth_type>", methods=['GET', 'POST'])
 def auth(auth_type):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    
     form = LogInForm() if auth_type == "login" else SignUpForm()
 
     if form.validate_on_submit():
@@ -44,3 +48,23 @@ def auth(auth_type):
 def logout():
     logout_user()
     return redirect(url_for('auth', auth_type="login"))
+
+@app.route("/feed")
+@login_required
+def feed():
+    return render_template('pages/feed.html', title="Feed", user_authenticated=current_user.is_authenticated)
+
+@app.route("/post", methods=['POST'])
+@login_required
+def post():
+    data = json.loads(request.data)
+    body = data.get('body')
+
+    if len(body) > 0:
+        new_post = models.Post(body=body, user=current_user)
+        db.session.add(new_post)
+        db.session.commit()
+    else:
+        return jsonify({'status': 'error', 'message': 'Post cannot be empty.'}) 
+
+    return jsonify({'status': 'success'})

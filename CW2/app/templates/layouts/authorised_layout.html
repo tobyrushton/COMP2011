@@ -1,0 +1,13 @@
+{% extends "layouts/root_layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/authorised_layout.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    {% block authorised_head %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div class="feed-wrapper">
+        {% block authorised_content %}{% endblock %}
+    </div>
+{% endblock %}

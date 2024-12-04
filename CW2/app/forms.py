@@ -12,4 +12,7 @@ class SignUpForm(LogInForm):
         EqualTo('password', message='Passwords must match.')
     ])
 
+class CreatePostForm(FlaskForm):
+    body = StringField('body', validators=[DataRequired(), Length(min=1, max=256)])
+
 

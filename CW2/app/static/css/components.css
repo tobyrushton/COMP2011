@@ -6,6 +6,7 @@
     border-style: solid;
     color: black;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .btn-link {
