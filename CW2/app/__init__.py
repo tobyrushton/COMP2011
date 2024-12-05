@@ -23,5 +23,6 @@ from app.models import User, Post, Like
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Post, db.session))
 admin.add_view(ModelView(Like, db.session))
+admin.add_view(ModelView(models.Comment, db.session))
 
 from app import views, models

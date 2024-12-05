@@ -1,0 +1,19 @@
+.back {
+    text-align: center;
+    padding: .5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-box {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    gap: 0.5rem;
+}
+
+.comment-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+}

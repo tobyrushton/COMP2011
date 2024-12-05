@@ -1,7 +1,7 @@
 from app import app, login_manager, models, db
 from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
-from .forms import SignUpForm, LogInForm
+from .forms import SignUpForm, LogInForm, CreatePostForm
 import json
 from sqlalchemy import func
 from .posts import get_posts
@@ -114,3 +114,17 @@ def like():
         return jsonify({'status': 'success', 'operation': operation})
     else:
         return jsonify({'status': 'error', 'message': 'Post does not exist.'})
+
+@app.route("/post/<int:id>", methods=['GET', 'POST'])
+@login_required
+def post_detail(id):
+    post = get_posts(current_user).filter(models.Post.id == id).first()
+    comments = db.session.query(models.Comment).filter(models.Comment.post_id == id).all()
+    form = CreatePostForm()
+
+    if form.validate_on_submit():
+        new_comment = models.Comment(body=form.body.data, user_id=current_user.id, post_id=id)
+        db.session.add(new_comment)
+        db.session.commit()
+
+    return render_template('pages/post.html', title="Post", user_authenticated=current_user.is_authenticated, post=post, form=form, comments=comments)
