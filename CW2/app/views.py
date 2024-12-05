@@ -34,7 +34,7 @@ def auth(auth_type):
             db.session.add(new)
             db.session.commit()
 
-            return redirect(url_for('index'))
+            return redirect(url_for('auth', auth_type="login"))
         else:
             user = db.session.query(models.User).filter_by(username=form.username.data).first()
             if user and user.password_hash == form.password.data:
@@ -42,7 +42,6 @@ def auth(auth_type):
                 return redirect(url_for('index'))
             else:
                 flash('Invalid username or password.', 'danger')
-                return redirect(url_for('auth', auth_type="login"))
     
     return render_template('pages/auth.html', title="Auth", auth_type=auth_type, form=form)
 

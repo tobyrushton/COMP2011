@@ -18,14 +18,32 @@
             {{ form.hidden_tag() }}
             <label for="username">Username</label>
             {{ form.username() }}
+            {% for error in form.username.errors %}
+                <p class="error-text">{{ error }}</p>
+            {% endfor %}
             <label for="password">Password</label>
             {{ form.password() }}
+            {% for error in form.password.errors %}
+                <p class="error-text">{{ error }}</p>
+            {% endfor %}            
             {% if auth_type == "register" %}
                 <label for="confirm_password">Confirm Password</label>
                 {{ form.confirm_password() }}
+                {% for error in form.confirm_password.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}            
             {% endif %}
             {% with text="Log In" if auth_type == "login" else "Register", button_class="btn-filled" %}
                 {% include 'components/button.html' %}
+            {% endwith %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li class="error-text">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             {% endwith %}
         </form>
     </div>

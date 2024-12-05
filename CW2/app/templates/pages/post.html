@@ -12,8 +12,20 @@
     <form class="comment-box" action="{{ url_for(request.endpoint, **request.view_args) }}" method="POST">
         {{ form.hidden_tag() }}
         <textarea class="comment-textarea" name="body" placeholder="Write a comment..." required maxlength="256"></textarea>
+        {% for error in form.body.errors %}
+            <p class="error-text">{{ error }}</p>
+        {% endfor %}
         {% with text="Comment", button_class="btn-filled" %}
             {% include 'components/button.html' %}
+        {% endwith %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li class="error-text">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endwith %}
     </form>
     {% for comment in comments %}
