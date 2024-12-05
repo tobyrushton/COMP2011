@@ -22,3 +22,10 @@
 .post-btn {
     align-self: flex-end;
 }
+
+/* create breakpoint here for small screens for button to have 100% width */
+@media (max-width: 700px) {
+    .post-btn {
+        width: 100%;
+    }
+}

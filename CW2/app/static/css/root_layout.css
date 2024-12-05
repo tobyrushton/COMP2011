@@ -10,13 +10,20 @@ body {
     flex-direction: column;
 }
 
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: calc(100% - 2rem);
     padding: 1rem;
-    border-bottom: 1px solid #ccc;
+    max-width: 45rem;
 }
 
 .title {

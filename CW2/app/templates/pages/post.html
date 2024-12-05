@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block authorised_content %}
-    <a href="{{ back_link }}" class="back">Back</a>
     {% with post=post[0], liked=post[1] %}
         {% include 'components/post.html' %}
     {% endwith %}

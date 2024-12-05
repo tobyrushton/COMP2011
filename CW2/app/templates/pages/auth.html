@@ -24,13 +24,9 @@
                 <label for="confirm_password">Confirm Password</label>
                 {{ form.confirm_password() }}
             {% endif %}
-            <button type="submit" class="btn-filled">
-                {% if auth_type == "register" %}
-                    Register
-                {% else %}
-                    Log in
-                {% endif %}
-            </button>
+            {% with text="Log In" if auth_type == "login" else "Register", button_class="btn-filled" %}
+                {% include 'components/button.html' %}
+            {% endwith %}
         </form>
     </div>
 {% endblock %}

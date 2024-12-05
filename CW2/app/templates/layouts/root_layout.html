@@ -14,13 +14,15 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <div class="header">
-            <h1 class="title">
-                <a href="/">Chirp</a>
-            </h1>
-            {% if user_authenticated %}
-                <a href="/logout">log out</a>
-            {% endif %}
+        <div class="header-wrapper">
+            <div class="header">
+                <h1 class="title">
+                    <a href="/">Chirp</a>
+                </h1>
+                {% if user_authenticated %}
+                    <a href="/logout">log out</a>
+                {% endif %}
+            </div>
         </div>
         <main class="content">
             {% block content %}{% endblock %}

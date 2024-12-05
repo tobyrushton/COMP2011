@@ -9,12 +9,13 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 30rem;
+    max-width: 40rem;
 
     border-style: none solid;
     border-width: 1px;
     border-color: #ccc;
     overflow-y: auto;
+    max-height: 100%;
 }
 
 .sidebar {
