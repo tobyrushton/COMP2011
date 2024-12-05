@@ -1,3 +1,4 @@
+/* style basic button */
 .btn {
     padding: .75rem 1.5rem;
     border-radius: .2rem;
@@ -9,6 +10,7 @@
     cursor: pointer;
 }
 
+/* button variation styles */
 .btn-link {
     text-decoration: none;
 }
@@ -19,6 +21,7 @@
     border: none;
 }
 
+/* create style for the post component */
 .post-container {
     padding: 1rem;
     display: flex;

@@ -1,3 +1,4 @@
+/* add styles for the comment input area */
 .comment-box {
     display: flex;
     padding: 1rem;
@@ -12,6 +13,7 @@
     resize: none;
 }
 
+/* put button below the input box on smaller screens */
 @media screen and (max-width: 700px) {
     .comment-box {
         flex-direction: column;

@@ -1,15 +1,18 @@
+/* create styles for the header */
 .profile-header {
     padding: 1rem;
     padding-bottom: 0;
     border-bottom: 1px solid #ccc;
 }
 
+/* place links in line with each other */
 .profile-button-slider {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
+/* style the button */
 .profile-button {
     width: 100%;
     padding: 1rem;
@@ -21,6 +24,7 @@
     color: inherit;
 }
 
+/* to highlight which button has been currently clicked */
 .profile-button-active {
     border-bottom: 1px solid black;
 }

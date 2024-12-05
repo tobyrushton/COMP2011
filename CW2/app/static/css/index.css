@@ -1,3 +1,4 @@
+/* adjust font sizes and align center */
 h2, p {
     text-align: center;
 }
@@ -10,6 +11,7 @@ p {
     font-size: large;
 }
 
+/* to put the buttons in line with each other */
 .btn-container {
     display: flex;
     justify-content: center;

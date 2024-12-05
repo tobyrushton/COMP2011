@@ -1,3 +1,4 @@
+/* center the content */
 .authorised-wrapper {
     display: flex;
     width: 100%;
@@ -5,6 +6,7 @@
     height: 100%;
 }
 
+/* limit the width and create borders */
 .feed-wrapper {
     display: flex;
     flex-direction: column;
@@ -18,6 +20,7 @@
     max-height: 100%;
 }
 
+/* style the sidebar component */
 .sidebar {
     display: flex;
     flex-direction: column;

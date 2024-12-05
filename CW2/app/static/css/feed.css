@@ -1,3 +1,4 @@
+/* create style for the box to add posts */
 .post-box {
     display: flex;
     flex-direction: column;

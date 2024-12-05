@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
 
+/* remove margin from body, fill the entire page and set the font */
 body {
     margin: 0;
     font-family: 'Geist Mono', monospace;
@@ -10,6 +11,7 @@ body {
     flex-direction: column;
 }
 
+/* create header styles */
 .header-wrapper {
     display: flex;
     justify-content: center;
@@ -17,6 +19,7 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
+/* ensures that the header does not go too far apart on very large screens */
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,6 +29,7 @@ body {
     max-width: 45rem;
 }
 
+/* set title */
 .title {
     font-size: x-large;
     font-weight: 800;

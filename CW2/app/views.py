@@ -7,6 +7,7 @@ from .posts import get_posts, get_recommendations
 
 @app.route("/")
 def index():
+    # redirect authenticated users to feed 
     if current_user.is_authenticated:
         return redirect(url_for('feed'))
     return render_template('pages/index.html', title="Home", user_authenticated=current_user.is_authenticated)
@@ -17,9 +18,11 @@ def load_user(user_id):
 
 @app.route("/auth/<string:auth_type>", methods=['GET', 'POST'])
 def auth(auth_type):
+    # redirect authenticated users to feed
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('feed'))
     
+    # create the form based on the auth type
     form = LogInForm() if auth_type == "login" else SignUpForm()
 
     if form.validate_on_submit():
@@ -36,6 +39,7 @@ def auth(auth_type):
 
             return redirect(url_for('auth', auth_type="login"))
         else:
+            # find the user and check the password
             user = db.session.query(models.User).filter_by(username=form.username.data).first()
             if user and user.password_hash == form.password.data:
                 login_user(user)
@@ -61,9 +65,11 @@ def feed():
 @app.route("/post", methods=['POST'])
 @login_required
 def post():
+    # get the post body from the request
     data = json.loads(request.data)
     body = data.get('body')
 
+    # check if the post is empty
     if len(body) > 0:
         new_post = models.Post(body=body, user=current_user)
         db.session.add(new_post)
@@ -78,30 +84,35 @@ def post():
 @app.route("/profile/<string:username>/<string:likes>")
 @login_required
 def profile(username=None, likes=None):
+    # get the user based on the username
     user = current_user if not username else db.session.query(models.User).filter_by(username=username).first()
     
     if user:
         posts = []
 
+        #  set the posts
         if not likes:
             posts = get_posts(current_user).order_by(models.Post.posted_at.desc()).filter(models.Post.user_id == user.id).all()
         else:
             posts = get_posts(current_user).filter_by(user_id=user.id).all()
         return render_template('pages/profile.html', title="Profile", user_authenticated=current_user.is_authenticated, user=user, likes=likes, posts=posts)
-    else:
+    else: # if user does not exist take them back to the feed
         return redirect(url_for('feed'))
 
 @app.route("/like", methods=['POST'])
 @login_required
 def like():
+    # get the post id from the request
     data = json.loads(request.data)
     post_id = data.get('id')
     post = db.session.query(models.Post).get(post_id)
 
     if post:
+        # check if the user has already liked the post
         like = db.session.query(models.Like).filter_by(post=post, user=current_user).first()
         operation = "delete" if like else "add"
 
+        # delete/add accordingly
         if like:
             db.session.delete(like)
         else:
@@ -116,10 +127,13 @@ def like():
 @app.route("/post/<int:id>", methods=['GET', 'POST'])
 @login_required
 def post_detail(id):
+    # get the post and comments
     post = get_posts(current_user).filter(models.Post.id == id).first()
     comments = db.session.query(models.Comment).filter(models.Comment.post_id == id).all()
+    # create the form
     form = CreatePostForm()
 
+    # check if the form is submitted and create a new comment if so
     if form.validate_on_submit():
         new_comment = models.Comment(body=form.body.data, user_id=current_user.id, post_id=id)
         db.session.add(new_comment)

@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 class LogInForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired(), Length(min=8, max=16, message='Password must be between 8 and 16 characters.')])
 
 class SignUpForm(LogInForm):
     confirm_password = PasswordField('Confirm Password', validators=[
